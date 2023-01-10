@@ -2,12 +2,10 @@
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
-
-const app = express();
-
-const port = process.env.PORT || 8000;
 require('dotenv').config();
-
+require("./config/db")
+const app = express();
+const port = process.env.PORT || 8000;
 
 // midlewares
 app.use(express.urlencoded({ extended:true}))
@@ -16,9 +14,8 @@ app.use(expressLayout);
 
 app.set('layout', './layouts/main');
 app.set('view engine','ejs')
-const routes = require('./server/routes/recipeRoutes.js')
+const routes = require('./src/routes/recipeRoutes.js')
 app.use('/',routes);
-
 
 
 app.listen(port, ()=>{
